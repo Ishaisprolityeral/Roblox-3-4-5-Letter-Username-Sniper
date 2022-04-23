@@ -3,6 +3,7 @@ import colorama
 import threading
 import time
 import random
+colorama.init()
 def sniper_threaded():
 	choices = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 	while True:
@@ -25,7 +26,7 @@ def sniper_threaded():
 print("Roblox 5 Letter Username Sniper, Made By blob#0005")
 while True:
 	try:
-		threads = input("Enter How Many Threads, 200-10000 Recomended Becuse You Cant Get Rate Limited: ")
+		threads = input("Enter How Many Threads, 5-10 Recomended: ")
 		threads = int(threads)
 		break
 	except Exception:
