@@ -1,5 +1,40 @@
-import requests
-import colorama
+reqerror = False
+colorerror = False
+anyerror = False
+try:
+    import requests
+except Exception:
+    reqerror = True
+    anyerror = True
+try:
+    import colorama
+except Exception:
+    colorerror = True
+    anyerror = True
+
+if anyerror == True:
+    while True:
+        fix = input("Missing Modules, Wanna Try To Auto Fix (y/n): ")
+        if fix == "y" or fix == "n":
+            break
+        else:
+            print("Enter A Valid Choice")
+    if fix == "n":
+        print("Press Enter To Close The Program")
+        input("")
+        exit()
+    if fix == "y":
+        try:
+            import os
+            os.system("pip install requests")
+            os.system("pip install colorama")
+        except Exception:
+            print("Error While Fixing, Add blob#0005 For Help :)")
+            input("")
+            exit()
+        print("Hopefully The Errors Shod Be Fixed, Restart The Program")
+        input("")
+        exit()
 import threading
 import time
 import random
