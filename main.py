@@ -48,12 +48,12 @@ def sniper_threaded5():
 			random3 = random.choice(choices)
 			random4 = random.choice(choices)
 			random5 = random.choice(choices)
-			r = requests.get(f"https://api.roblox.com/users/get-by-username?username={random1}{random2}{random3}{random4}{random5}").text
+			r = requests.get(f'https://auth.roblox.com/v1/usernames/validate?request.username={random1}{random2}{random3}{random4}{random5}&request.birthday=1337-04-20').json()
 			r = str(r)
-			if "User not found" in r:
-				print(colorama.Fore.GREEN + f"Generated Valid Name/Banned User, {random1}{random2}{random3}{random4}{random5}")
+			if "0" in r:
+				print(colorama.Fore.GREEN + f"Generated Valid Name, {random1}{random2}{random3}{random4}{random5}")
 				if save == "y":
-					file = open("valid_or_banned_roblox_names.txt", "a")
+					file = open("valid_roblox_names.txt", "a")
 					file.write(f"{random1}{random2}{random3}{random4}{random5}\n")
 					file.close()
 			else:
@@ -69,12 +69,12 @@ def sniper_threaded4():
 			random2 = random.choice(choices)
 			random3 = random.choice(choices)
 			random4 = random.choice(choices)
-			r = requests.get(f"https://api.roblox.com/users/get-by-username?username={random1}{random2}{random3}{random4}").text
+			r = requests.get(f'https://auth.roblox.com/v1/usernames/validate?request.username={random1}{random2}{random3}{random4}&request.birthday=1337-04-20').json()
 			r = str(r)
-			if "User not found" in r:
-				print(colorama.Fore.GREEN + f"Generated Valid Name/Banned User, {random1}{random2}{random3}{random4}")
+			if "0" in r:
+				print(colorama.Fore.GREEN + f"Generated Valid Name, {random1}{random2}{random3}{random4}")
 				if save == "y":
-					file = open("valid_or_banned_roblox_names.txt", "a")
+					file = open("valid_roblox_names.txt", "a")
 					file.write(f"{random1}{random2}{random3}{random4}\n")
 					file.close()
 			else:
@@ -89,12 +89,12 @@ def sniper_threaded3():
 			random1 = random.choice(choices)
 			random2 = random.choice(choices)
 			random3 = random.choice(choices)
-			r = requests.get(f"https://api.roblox.com/users/get-by-username?username={random1}{random2}{random3}").text
+			r = requests.get(f'https://auth.roblox.com/v1/usernames/validate?request.username={random1}{random2}{random3}&request.birthday=1337-04-20').json()
 			r = str(r)
-			if "User not found" in r:
-				print(colorama.Fore.GREEN + f"Generated Valid Name/Banned User, {random1}{random2}{random3}")
+			if "0" in r:
+				print(colorama.Fore.GREEN + f"Generated Valid Name, {random1}{random2}{random3}")
 				if save == "y":
-					file = open("valid_or_banned_roblox_names.txt", "a")
+					file = open("valid_roblox_names.txt", "a")
 					file.write(f"{random1}{random2}{random3}\n")
 					file.close()
 			else:
