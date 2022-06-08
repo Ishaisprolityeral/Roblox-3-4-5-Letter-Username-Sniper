@@ -114,8 +114,9 @@ while True:
 1. 5 Letter
 2. 4 Letter
 3. 3 Letter
+4. Check Usernames In usernames_to_check.txt
 > """)
-    if letter == "1" or letter == "2" or letter == "3":
+    if letter == "1" or letter == "2" or letter == "3" or letter == "4":
         break
     else:
         print("Enter A Valid Choice")
@@ -200,3 +201,72 @@ if letter == "3":
     for _ in range(int(threads)):
         t1 = threading.Thread(target=sniper_threaded3)
         t1.start()
+
+
+
+
+if letter == "4":
+    print("This Will Check All Usernames In usernames_to_check.txt")
+    print("INFO: If Username Is Shorter Than 3 Letters It WIll Count As Valid Even Tho Its Invalid, Same If Its More Than 20 Letters And Same With If It Has Any Character Roblox Does Not Support")
+    while True:
+        try:
+            delay = input("Enter Delay (0 For None): ")
+            delay = float(delay)
+            break
+        except:
+            print("Enter A Valid Choice")
+    while True:
+        save = input("Auto Save Names (y/n): ")
+        if save == "y" or save == "n":
+            break
+        else:
+            print("Enter A Valid Choice")
+    input("Press Enter To Start: ")
+    try:
+        file = open("usernames_to_check.txt", "r")
+        lines = file.readlines()
+        file.close()
+    except:
+        print("Could Not Find usernames_to_check.txt Please Create One And Enter Usernames In It")
+    list = []
+    donelist = 0
+    for name in lines:
+        if "\n" in name:
+            list.append(name[:-1])
+            donelist = int(donelist) + 1
+        else:
+            list.append(name)
+            donelist = int(donelist) + 1
+        print(f"[{str(donelist)}] Loaded Namne")
+    print("Done With Loading Names, Press Enter To Start Checker")
+    input("")
+    donee = 0
+    for user in list:
+        donee = int(donee) + 1
+        e = len(user)
+        e = str(e)
+        if int(e) >= 3 or int(e) <= 20:
+            r = requests.get(f"https://api.roblox.com/users/get-by-username?username={str(user)}").text
+            r = str(r)
+            if "User not found" in r:
+                print(colorama.Fore.GREEN + f"[{str(donee)}] Checked Username, Valid! " + str(user))
+                if save == "y":
+                    file = open("valid_usernames_(usernames_to_check).txt", "a")
+                    file.write(user+"\n")
+                    file.close()
+            else:
+                print(colorama.Fore.RED + f"[{str(donee)}] Checked Username, Invalid! " + str(user))
+                if save == "y":
+                    file2 = open("valid_usernames_(usernames_to_check).txt", "a")
+                    file2.write(user+"\n")
+                    file2.close()
+        else:
+            print(colorama.Fore.RED + f"[{str(donee)}] Checked Username, Invalid! " + str(user))
+            if save == "y":
+                file3 = open("valid_usernames_(usernames_to_check).txt", "a")
+                file3.write(user+"\n")
+                file3.close()
+        time.sleep(float(delay))
+    print("Done")
+    input("")
+    exit()
