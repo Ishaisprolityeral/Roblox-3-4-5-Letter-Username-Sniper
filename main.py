@@ -257,13 +257,13 @@ if letter == "4":
             else:
                 print(colorama.Fore.RED + f"[{str(donee)}] Checked Username, Invalid! " + str(user))
                 if save == "y":
-                    file2 = open("valid_usernames_(usernames_to_check).txt", "a")
+                    file2 = open("invalid_usernames_(usernames_to_check).txt", "a")
                     file2.write(user+"\n")
                     file2.close()
         else:
             print(colorama.Fore.RED + f"[{str(donee)}] Checked Username, Invalid! " + str(user))
             if save == "y":
-                file3 = open("valid_usernames_(usernames_to_check).txt", "a")
+                file3 = open("invalid_usernames_(usernames_to_check).txt", "a")
                 file3.write(user+"\n")
                 file3.close()
         time.sleep(float(delay))
