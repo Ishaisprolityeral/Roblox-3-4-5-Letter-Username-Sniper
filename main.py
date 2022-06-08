@@ -44,7 +44,7 @@ if anyerror == True:
 import threading
 import time
 import random
-colorama.init()
+colorama.init(autoreset=True)
 def sniper_threaded5():
 	choices = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 	while True:
@@ -115,8 +115,9 @@ while True:
 2. 4 Letter
 3. 3 Letter
 4. Check Usernames In usernames_to_check.txt
+5. Check One Username
 > """)
-    if letter == "1" or letter == "2" or letter == "3" or letter == "4":
+    if letter == "1" or letter == "2" or letter == "3" or letter == "4" or letter == "5":
         break
     else:
         print("Enter A Valid Choice")
@@ -164,7 +165,7 @@ if letter == "2":
         except Exception:
             print("Enter A Valid Choice")
     while True:
-        save = input("Wanna Save All 5 Letter Account Names In A Txt (y/n): ")
+        save = input("Wanna Save All 4 Letter Account Names In A Txt (y/n): ")
         if save == "y" or save == "n":
             break
         else:
@@ -192,7 +193,7 @@ if letter == "3":
         except Exception:
             print("Enter A Valid Choice")
     while True:
-        save = input("Wanna Save All 5 Letter Account Names In A Txt (y/n): ")
+        save = input("Wanna Save All 3 Letter Account Names In A Txt (y/n): ")
         if save == "y" or save == "n":
             break
         else:
@@ -270,3 +271,17 @@ if letter == "4":
     print("Done")
     input("")
     exit()
+
+
+
+
+if letter == "5":
+    print("INFO: If Username Is Shorter Than 3 Letters It WIll Count As Valid Even Tho Its Invalid, Same If Its More Than 20 Letters And Same With If It Has Any Character Roblox Does Not Support")
+    while True:
+        username = input("Enter Username: ")
+        r = requests.get(f"https://api.roblox.com/users/get-by-username?username={str(username)}").text
+        r = str(r)
+        if "User not found" in r:
+            print(colorama.Fore.GREEN + "Username Not Taken Or Banned!")
+        else:
+            print(colorama.Fore.RED + "Username Taken!")
